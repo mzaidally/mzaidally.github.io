@@ -821,7 +821,7 @@ function setupBossEnemy() {
 
 
 //SpiderBoss Enemy
-new t.ColladaLoader().load('models/redBlackSpider.dae', function(collada) {
+new t.ColladaLoader().load('models/cottusF.dae', function(collada) {
 	model = collada.scene;
 	skin = collada.skins[0];
 	model.scale.set(40, 40, 40);
