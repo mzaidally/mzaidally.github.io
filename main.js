@@ -97,7 +97,7 @@ var mapWidth = window.innerWidth,
 	laserDamage = 20;
 
 // Global variables
-var t = THREE, scene, cam, renderer, fpsControls, clock, projector, model1, skin;
+var t = THREE, scene, cam, renderer, fpsControls, clock, projector, model, skin;
 var runAnim = true, mouse = { x: 0, y: 0 }, kills = 0, health = 100,coins=0;
 var healthHeart ,door,doorWall,doorWall2,limit2, time_elapsed2,coin,coin1,coin2,coin3,speedBoost,speedPickup, lastHealthPickup,lastCoinPickup = 0;
 var coinsTally = 1;
@@ -821,19 +821,13 @@ function setupBossEnemy() {
 
 
 //SpiderBoss Enemy
-// new t.ColladaLoader().load('models/cottusF.dae', function(collada) {
-// 	model1 = collada.scene;
-// 	skin = collada.skins[0];
-// 	model1.scale.set(40, 40, 40);
-// 	model1.position.set(10, 5, 10);
-// });
+new t.ColladaLoader().load('models/redBlackSpider.dae', function(collada) {
+	model = collada.scene;
+	skin = collada.skins[0];
+	model.scale.set(40, 40, 40);
+	model.position.set(10, 5, 10);
+});
 
-var model1Cube = new t.CubeGeometry(30,30,30);
-
-var aiMaterial2 = new t.MeshBasicMaterial({/*color: 0xEE3333,*/map: t.ImageUtils.loadTexture('images/enemy.png')});
-        
-var model1 = new t.Mesh(model1Cube,aiMaterial2);
-model1.scale.set(10,10,10);
 
 //Create a new BoxGeometry as a hitbox for spider
 
@@ -850,18 +844,18 @@ function addAI2() {
 	x = Math.floor(x - mapW/2) * standardUnit;
 	z = Math.floor(z - mapW/2) * standardUnit;
 	
-	model1.position.set(x, standardUnit * 0.15, z);
-	model1.health = 100;
+	model.position.set(x, standardUnit * 0.15, z);
+	model.health = 100;
 	 // Higher-fidelity timers aren't a big deal here.
 	
-	model1.pathPos = 1;
-	model1.lastRandomX = Math.random();
-	model1.lastRandomZ = Math.random();
-	model1.lastShot = Date.now(); // Higher-fidelity timers aren't a big deal here.
+	model.pathPos = 1;
+	model.lastRandomX = Math.random();
+	model.lastRandomZ = Math.random();
+	model.lastShot = Date.now(); // Higher-fidelity timers aren't a big deal here.
 
 	vertices2 = enemy.geometry.vertices[0];
-	aiList2.push(model1);
-	scene.add(model1);
+	aiList2.push(model);
+	scene.add(model);
 }
 
 
